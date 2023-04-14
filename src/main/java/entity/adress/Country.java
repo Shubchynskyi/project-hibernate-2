@@ -1,4 +1,4 @@
-package adress;
+package entity.adress;
 
 public enum Country {
 }
