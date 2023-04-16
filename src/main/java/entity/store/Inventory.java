@@ -1,20 +1,30 @@
 package entity.store;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import entity.film.Film;
+import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Data
+@Table(name = "inventory")
 public class Inventory {
     @Id
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "inventory_id")
+    private Integer id;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    @ManyToOne
+    @JoinColumn(name = "film_id")
+    private Film film;
 
-    public Long getId() {
-        return id;
-    }
+    @ManyToOne
+    @JoinColumn(name = "store_id")
+    private Store store;
+
+    @UpdateTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDateTime lastUpdate;
 }

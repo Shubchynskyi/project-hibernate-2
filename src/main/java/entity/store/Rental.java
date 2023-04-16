@@ -1,20 +1,32 @@
 package entity.store;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Data
+@Table(name = "rental")
 public class Rental {
     @Id
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "rental_id")
+    private Integer id;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDateTime rentalDate;
 
-    public Long getId() {
-        return id;
-    }
+//    private Inventory inventory;
+//    private Customer customer;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDateTime returnDate;
+
+//    private Staff staff;
+
+    @UpdateTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDateTime lastUpdate;
 }

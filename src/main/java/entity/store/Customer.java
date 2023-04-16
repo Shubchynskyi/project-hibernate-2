@@ -1,20 +1,43 @@
 package entity.store;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import entity.adress.Address;
+import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Data
+@Table(name = "customer")
 public class Customer {
     @Id
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "customer_id")
+    private Short id;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    @ManyToOne
+    @JoinColumn(name = "store_id")
+    private Store store;
 
-    public Long getId() {
-        return id;
-    }
+    private String firstName;
+    private String lastName;
+    private String email;
+
+    @OneToOne
+    @JoinColumn(name = "address_id")
+    private Address address;
+
+    private Byte active;
+
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDateTime createDate;
+
+    @UpdateTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDateTime lastUpdate;
+
+
 }

@@ -17,13 +17,13 @@ public class MySessionFactory {
 
     public MySessionFactory() {
         Configuration configuration = new Configuration();
-        configuration.addAnnotatedClass(Film.class);
+//        configuration.addAnnotatedClass(Film.class);
 
         String packageName = "entity";
         Reflections reflections = new Reflections(packageName);
         Set<Class<?>> entityClasses = reflections.getTypesAnnotatedWith(Entity.class);
         for (Class<?> entityClass : entityClasses) {
-            System.out.println(entityClass.getName());
+            configuration.addAnnotatedClass(entityClass);
         }
 
         configuration.setPhysicalNamingStrategy(new CamelCaseToUnderscoresNamingStrategy());

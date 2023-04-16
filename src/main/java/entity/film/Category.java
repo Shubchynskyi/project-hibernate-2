@@ -2,7 +2,9 @@ package entity.film;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.UpdateTimestamp;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,11 +14,18 @@ import java.util.List;
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Byte categoryId;
+    @Column(name = "category_id")
+    private Byte id;
+
+    private String name;
+
+    @UpdateTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDateTime lastUpdate;
 
     @ManyToMany
     @JoinTable(name = "film_category",
-            joinColumns = @JoinColumn(name = "category_id"),
-            inverseJoinColumns = @JoinColumn(name = "film_id"))
-    private List<Film> films = new ArrayList<>();
+            joinColumns = @JoinColumn(name = "category_id", referencedColumnName = "category_id"),
+            inverseJoinColumns = @JoinColumn(name = "film_id", referencedColumnName = "film_id"))
+    private List<Film> films;
 }

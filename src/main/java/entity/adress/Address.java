@@ -1,9 +1,10 @@
 package entity.adress;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "address")
@@ -11,13 +12,23 @@ import lombok.Data;
 public class Address {
 
     @Id
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "address_id")
+    private Short id;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    private String address;
+    private String address2;
+    private String district;
+    @ManyToOne
+    @JoinColumn(name = "city_id")
+    private City city;
 
-    public Long getId() {
-        return id;
-    }
+    private String postalCode;
+    private String phone;
+
+    @UpdateTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDateTime lastUpdate;
+
+
 }
