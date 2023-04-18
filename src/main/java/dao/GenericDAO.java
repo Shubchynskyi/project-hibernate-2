@@ -55,7 +55,7 @@ public abstract class GenericDAO<T> {
 
     protected Session getCurrentSession() {
 
-        return sessionFactory.openSession();
+        return sessionFactory.getCurrentSession();
     }
 
 }

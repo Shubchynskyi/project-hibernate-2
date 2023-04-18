@@ -12,6 +12,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.cfg.Environment;
 import org.reflections.Reflections;
 
 import java.util.Set;
@@ -48,6 +49,7 @@ public class Runner {
         }
 
         configuration.setPhysicalNamingStrategy(new CamelCaseToUnderscoresNamingStrategy());
+        configuration.setProperty(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
         sessionFactory = configuration.buildSessionFactory();
         System.out.println(sessionFactory);
 
@@ -87,7 +89,7 @@ public class Runner {
     }
 
     private Customer createCustomer() {
-        try (Session session = sessionFactory.openSession()) {
+        try (Session session = sessionFactory.getCurrentSession()) {
             Transaction transaction = session.beginTransaction();
 
             System.err.println(session);
