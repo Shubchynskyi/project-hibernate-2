@@ -35,7 +35,7 @@ public class Staff {
     private Store store;
 
     @Column(columnDefinition = "BIT")
-//    @Type(type = "BIT")
+    @Convert(converter = org.hibernate.type.NumericBooleanConverter.class)
     private Boolean active;
 
     private String username;

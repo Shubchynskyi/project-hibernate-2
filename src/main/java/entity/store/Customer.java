@@ -34,8 +34,8 @@ public class Customer {
     private Address address;
 
     @Column(columnDefinition = "BIT")
-//    @Convert(converter = org.hibernate.type.NumericBooleanConverter.class)
-    private Byte active;
+    @Convert(converter = org.hibernate.type.NumericBooleanConverter.class)
+    private Boolean active;
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)

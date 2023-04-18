@@ -75,6 +75,7 @@ public class Runner {
     public static void main(String[] args) {
         Runner runner = new Runner();
         Customer customer = runner.createCustomer();
+
 //        System.out.println(customer);
 
 //        try (Session session = runner.sessionFactory.openSession()) {
@@ -109,7 +110,7 @@ public class Runner {
             System.err.println("address saved: " + address);
 
             Customer customer = new Customer();
-            customer.setActive((byte) 1);
+            customer.setActive(true);
             customer.setEmail("test@test.com");
             customer.setAddress(address);
             customer.setStore(store);
