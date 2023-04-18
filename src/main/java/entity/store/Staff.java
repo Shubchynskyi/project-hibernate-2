@@ -1,15 +1,16 @@
 package entity.store;
 
-import entity.adress.Address;
+import entity.address.Address;
 import jakarta.persistence.*;
-import lombok.Data;
-import org.hibernate.annotations.Type;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 
 @Entity
-@Data
+@Getter
+@Setter
 @Table(name = "staff")
 public class Staff {
     @Id
@@ -18,22 +19,24 @@ public class Staff {
     private Byte id;
     private String firstName;
     private String lastName;
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "address_id")
     private Address address;
 
     @Lob
-    @Column(columnDefinition = "blob")
-//    @Type(type = "blob")
+    @Column(columnDefinition = "BLOB")
+//    @Type(type = "BLOB")
     private byte[] picture;
 
     private String email;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "store_id")
     private Store store;
 
-    private Byte active;
+    @Column(columnDefinition = "BIT")
+//    @Type(type = "BIT")
+    private Boolean active;
 
     private String username;
     private String password;

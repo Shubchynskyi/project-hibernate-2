@@ -1,14 +1,18 @@
-package entity.adress;
+package entity.address;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "country")
-@Data
+@Getter
+@Setter
+@ToString
 public class Country {
 
     @Id

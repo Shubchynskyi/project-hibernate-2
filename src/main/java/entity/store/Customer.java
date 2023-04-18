@@ -1,15 +1,19 @@
 package entity.store;
 
-import entity.adress.Address;
+import entity.address.Address;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 
 @Entity
-@Data
+@Getter
+@Setter
+@ToString
 @Table(name = "customer")
 public class Customer {
     @Id
@@ -29,6 +33,8 @@ public class Customer {
     @JoinColumn(name = "address_id")
     private Address address;
 
+    @Column(columnDefinition = "BIT")
+//    @Convert(converter = org.hibernate.type.NumericBooleanConverter.class)
     private Byte active;
 
     @CreationTimestamp
@@ -38,6 +44,5 @@ public class Customer {
     @UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime lastUpdate;
-
 
 }

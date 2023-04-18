@@ -8,13 +8,15 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "language")
-@Data
+@Getter
+@Setter
 public class Language {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "language_id")
     private Byte id;
 
+    @Column(columnDefinition = "char")
     private String name;
 
     @UpdateTimestamp

@@ -1,13 +1,15 @@
 package entity.store;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 
 @Entity
-@Data
+@Getter
+@Setter
 @Table(name = "rental")
 public class Rental {
     @Id
@@ -18,13 +20,19 @@ public class Rental {
     @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime rentalDate;
 
-//    private Inventory inventory;
-//    private Customer customer;
+    @ManyToOne
+    @JoinColumn(name = "inventory_id")
+    private Inventory inventory;
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
 
     @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime returnDate;
 
-//    private Staff staff;
+    @ManyToOne
+    @JoinColumn(name = "staff_id")
+    private Staff staff;
 
     @UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
