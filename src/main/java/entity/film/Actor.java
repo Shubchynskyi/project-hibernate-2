@@ -26,8 +26,6 @@ public class Actor {
     private LocalDateTime lastUpdate;
 
     @ManyToMany
-    @JoinTable(name = "film_actor",
-            joinColumns = @JoinColumn(name = "actor_id", referencedColumnName = "actor_id"),
-            inverseJoinColumns = @JoinColumn(name = "film_id", referencedColumnName = "film_id"))
+    @JoinTable(name = "film_actor", joinColumns = @JoinColumn(name = "actor_id", referencedColumnName = "actor_id"), inverseJoinColumns = @JoinColumn(name = "film_id", referencedColumnName = "film_id"))
     private List<Film> films;
 }

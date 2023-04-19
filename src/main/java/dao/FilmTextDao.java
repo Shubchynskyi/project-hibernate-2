@@ -1,6 +1,5 @@
 package dao;
 
-
 import entity.film.FilmText;
 import org.hibernate.SessionFactory;
 

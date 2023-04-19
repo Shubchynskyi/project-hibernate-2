@@ -1,7 +1,6 @@
 package dao;
 
 import entity.address.City;
-
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 

@@ -1,6 +1,5 @@
 package dao;
 
-
 import entity.store.Payment;
 import org.hibernate.SessionFactory;
 

@@ -15,7 +15,6 @@ public class FilmText {
 
     private String title;
     @Column(columnDefinition = "text")
-//    @Type(type = "text")
     private String description;
     @OneToOne
     @JoinColumn(name = "film_id")

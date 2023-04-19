@@ -1,10 +1,9 @@
 package dao;
 
-//import jakarta.persistence.Query;
+import jakarta.persistence.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import jakarta.persistence.*;
 import java.util.List;
 
 public abstract class GenericDAO<T> {
@@ -22,9 +21,6 @@ public abstract class GenericDAO<T> {
     }
 
     public List<T> getItems(int offset, int count) {
-        System.out.println("getItems");
-        System.out.println(getCurrentSession().isOpen());
-//        System.out.println(session);
         Query query = getCurrentSession().createQuery("FROM " + clazz.getName(), clazz);
         query.setFirstResult(offset);
         query.setMaxResults(count);
@@ -36,7 +32,7 @@ public abstract class GenericDAO<T> {
     }
 
     public T save(T entity) {
-        getCurrentSession().saveOrUpdate(entity);
+        getCurrentSession().persist(entity);
         return entity;
     }
 
